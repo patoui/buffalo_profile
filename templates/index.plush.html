@@ -1,64 +1,17 @@
-<header>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-1 col-sm-2 col-xs-2 logo">
-        <a href="<%= rootPath() %>"><img src="<%= rootPath() %>assets/images/logo.svg" alt=""></a>
-      </div>
-      <div class="col-md-9 col-sm-9 col-xs-10 titles">
-        <h1><%= t("welcome_greeting") %></h1>
-        <h2>
-          <a href="https://github.com/gobuffalo/buffalo"><i class="fab fa-github" aria-hidden="true"></i> https://github.com/gobuffalo/buffalo</a>
-        </h2>
-        <h2 class="documentation">
-          <a href="http://gobuffalo.io/"><i class="fa fa-book" aria-hidden="true"></i> Documentation</a>
-        </h2>
-      </div>
-    </div>
-  </div>
+<!-- @extends('layouts.app') -->
 
-</header>
+<!-- @section('meta')
+    <meta name="description"        content="A small blog by humble developer Patrique Ouimet primarily working with PHP and JavaScript" />
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content="Patrique Ouimet" />
+    <meta property="og:description" content="A small blog by humble developer Patrique Ouimet primarily working with PHP and JavaScript" />
+    <meta property="og:image"       content="{{ Request::root() . '/img/black-white-profile.png' }}" />
+@endsection -->
 
-<div class="row">
-  <div class="col-md-12">
-    <div class="subtitle">
-      <div class="container">
-        <h3>Defined Routes</h3>
-      </div>
-    </div>
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr text-align="left">
-            <th class="centered">METHOD</th>
-            <th>PATH</th>
-            <th>NAME</th>
-            <th>HANDLER</th>
-          </tr>
-        </thead>
-        <tbody>
+<!-- @section('title', 'Patrique Ouimet') -->
 
-          <%= for (r) in routes { %>
-            <tr>
-              <td class="centered">
-                <%= r.Method %>
-              </td>
-              <td>
-                <%= if (r.Method != "GET" || r.Path ~= "{") {
-                  return r.Path
-                } else {
-                  return linkTo(r.Path, {body: r.Path})
-                } %>
-              </td>
-              <td>
-                <%= r.PathName %>
-              </td>
-              <td><code><%= r.HandlerName %></code></td>
-            </tr>
-          <% } %>
-
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-<div class="foot"> <span> Powered by <a href="http://gobuffalo.io/">gobuffalo.io</a></span> </div>
+<span class="w-full block mt-2 font-bold text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">Hello world!</span>
+<h1 class="w-full block mb-4 font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">My name is Patrique Ouimet :D</h1>
+<p class="block mb-5 leading-relaxed">I'm a developer who currently works with: PHP (Laravel), JavaScript (AngularJS, VueJS), and CSS (Sass). I have an obssession with learning, whether it’s to sharpen my existing skills or to explore new ones such as: Ruby (Ruby on Rails), Python (Django), AdonisJS, React, etc. I also enjoy running, hiking, biking, weight lifting, soccer, and basketball.</p>
+<p class="block mb-5 leading-relaxed">As of late I’ve decided to try myself at blogging to share some tips and tricks I’ve learned during my time as a developer, whether they be technical, interpersonel, or otherwise; my hope is that fellow developers may learn something from my blog.</p>
+<p class="block mb-5 leading-relaxed">If you have any suggestions or materials that would assist me in becoming a better developer or to help me write better content, please don’t hesitate to contact me on Twitter <a href="https://twitter.com/patoui2" class="text-blue-600">@patoui2</a>.</p>

@@ -1,0 +1,66 @@
+<div class="py-4 mb-2">
+  <h3 class="d-inline-block">Post Details</h3>
+
+  <div class="float-right">
+    <%= linkTo(postsPath(), {class: "btn btn-info"}) { %>
+      Back to all Posts
+    <% } %>
+    <%= linkTo(editPostPath({ post_id: post.ID }), {class: "btn btn-warning", body: "Edit"}) %>
+    <%= linkTo(postPath({ post_id: post.ID }), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Destroy"}) %>
+  </div>
+</div>
+
+
+
+<ul class="list-group mb-2 ">
+
+
+  <li class="list-group-item pb-1">
+    <label class="small d-block">ID</label>
+    <p class="d-inline-block"><%= post.ID %></p>
+  </li>
+
+
+
+  <li class="list-group-item pb-1">
+    <label class="small d-block">Title</label>
+    <p class="d-inline-block"><%= post.Title %></p>
+  </li>
+
+
+
+  <li class="list-group-item pb-1">
+    <label class="small d-block">Slug</label>
+    <p class="d-inline-block"><%= post.Slug %></p>
+  </li>
+
+
+
+  <li class="list-group-item pb-1">
+    <label class="small d-block">Body</label>
+    <p class="d-inline-block"><%= post.Body %></p>
+  </li>
+
+
+
+  <li class="list-group-item pb-1">
+    <label class="small d-block">PublishedAt</label>
+    <p class="d-inline-block"><%= post.PublishedAt %></p>
+  </li>
+
+
+
+  <li class="list-group-item pb-1">
+    <label class="small d-block">CreatedAt</label>
+    <p class="d-inline-block"><%= post.CreatedAt %></p>
+  </li>
+
+
+
+  <li class="list-group-item pb-1">
+    <label class="small d-block">UpdatedAt</label>
+    <p class="d-inline-block"><%= post.UpdatedAt %></p>
+  </li>
+
+
+</ul>

@@ -1,4 +1,16 @@
 @import "~bootstrap/scss/bootstrap.scss";
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 
-@import "buffalo";
+@import "~tailwindcss";
+
+.markdown-body a {
+  color: #0366d6;
+}
+
+.markdown-body pre {
+  overflow-y: auto;
+}
+
+.markdown-body a:hover {
+  text-decoration: underline;
+}
