@@ -1,33 +1,21 @@
-<div class="py-4 mb-2">
-  <h3 class="d-inline-block">Posts</h3>
-  <div class="float-right">
-    <%= linkTo(newPostsPath(), {class: "btn btn-primary"}) { %>
-      Create New Post
-    <% } %>
-  </div>
-</div>
+<!-- @extends('layouts.app')
 
-<table class="table table-hover table-bordered">
-  <thead class="thead-light">
-    <th>ID</th><th>Title</th><th>Slug</th><th>Body</th><th>PublishedAt</th><th>CreatedAt</th><th>UpdatedAt</th>
-    <th>&nbsp;</th>
-  </thead>
-  <tbody>
-    <%= for (post) in posts { %>
-      <tr>
-        <td class="align-middle"><%= post.ID %></td><td class="align-middle"><%= post.Title %></td><td class="align-middle"><%= post.Slug %></td><td class="align-middle"><%= post.Body %></td><td class="align-middle"><%= post.PublishedAt %></td><td class="align-middle"><%= post.CreatedAt %></td><td class="align-middle"><%= post.UpdatedAt %></td>
-        <td>
-          <div class="float-right">
-            <%= linkTo(postPath({ post_id: post.ID }), {class: "btn btn-info", body: "View"}) %>
-            <%= linkTo(editPostPath({ post_id: post.ID }), {class: "btn btn-warning", body: "Edit"}) %>
-            <%= linkTo(postPath({ post_id: post.ID }), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Destroy"}) %>
-          </div>
-        </td>
-      </tr>
-    <% } %>
-  </tbody>
-</table>
+@section('meta')
+    <meta name="description"        content="A small blog by humble developer Patrique Ouimet primarily working with PHP and JavaScript" />
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content="Patrique Ouimet" />
+    <meta property="og:description" content="A small blog by humble developer Patrique Ouimet primarily working with PHP and JavaScript" />
+    <meta property="og:image"       content="{{ Request::root() . '/img/black-white-profile.png' }}" />
+@endsection -->
 
-<div class="text-center">
-  <%= paginator(pagination) %>
+<!-- @section('title', 'Articles') -->
+
+<h1 class="text-4xl mb-4">Articles</h1>
+<%= for (post) in posts { %>
+<div class="mb-6 w-full">
+    <a href="<%= postPath({ post_id: post.ID }) %>" class="no-underline font-semibold text-black text-xl hover:underline block"><%= post.Title %></a>
+    <p class="mt-2 mb-2 text-sm text-gray-700"><%= post.ShortBody() %></p>
+    <!-- TODO: determine how to get short published at 'short_published_at' -->
+    <p class="text-sm text-gray-600">Published on <%= post.ShortPublishedAt() %></p>
 </div>
+<% } %>

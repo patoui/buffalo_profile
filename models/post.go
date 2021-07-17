@@ -30,6 +30,20 @@ func (p Post) String() string {
 // Posts is not required by pop and may be deleted
 type Posts []Post
 
+// Get a post short body (first 100 characters)
+func (p Post) ShortBody() string {
+	bl := len(p.Body) - 1
+	if bl > 99 {
+		bl = 99
+	}
+	return p.Body[0:bl]
+}
+
+// Get formatted date time to display to the user
+func (p Post) ShortPublishedAt() string {
+	return p.PublishedAt.Time.Format("Mon, Jan _2, 2006 3:04 PM")
+}
+
 // String is not required by pop and may be deleted
 func (p Posts) String() string {
 	jp, _ := json.Marshal(p)
