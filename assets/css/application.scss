@@ -1,5 +1,8 @@
-@import "~bootstrap/scss/bootstrap.scss";
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
+
+// markdown css
+@import "primer-markdown/index.scss";
+@import "./../../node_modules/github-syntax-light/lib/github-light.css";
 
 @import "~tailwindcss";
 

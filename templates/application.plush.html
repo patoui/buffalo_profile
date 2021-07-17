@@ -1,31 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Patrique Ouimet">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Patrique Ouimet" />
     <meta name="csrf-param" content="authenticity_token" />
     <meta name="csrf-token" content="<%= authenticity_token %>" />
 
-    <!-- Additional meta tags -->
-    <!-- yield meta -->
+    <%= if (pageDescription) { %>
+        <meta name="description" content="<%= pageDescription %>" />
+    <% } %>
+
+    <meta property="og:type" content="<%= if(ogType) { %><%= ogType %><% } else { %>website<% } %>" />
+    <meta property="og:title" content="<%= if(pageTitle) { %><%= pageTitle %><% } else { %>Patrique Ouimet<% } %>" />
+
+    <%= if (pageDescription) { %>
+        <meta property="og:description" content="<%= pageDescription %>" />
+    <% } %>
+
+    <meta property="og:image" content="<%= rootPath() %>assets/images/black-white-profile.png" />
+
+    <%= if (ogType == "article") { %>
+
+        <meta property="article:author" content="Patrique Ouimet" />
+
+        <%= if (publishedAt) { %>
+            <meta property="article:published_time" content="<%= publishedAt %>" />
+        <% } %>
+
+        <%= if(tags) { %>
+            <%= for (tag) in tags { %>
+            <meta property="article:tag" content="<%= tag.Name %>" />
+            <% } %>
+        <% } %>
+
+    <% } %>
+
+    <meta property="og:url" content="<%= if(currentUrl) { %><%= currentUrl %><% } else { %><%= rootPath() %><% } %>" />
 
     <link rel="shortcut icon" type="image/x-icon" href="<%= assetPath("images/favicon.ico") %>"/>
 
-    <!-- TODO: Determine how to add custom titles -->
-    <title>Patrique Ouimet</title>
+    <title><%= if(pageTitle) { %><%= pageTitle %><% } else { %>Patrique Ouimet<% } %></title>
 
-    <!-- App CSS -->
     <%= stylesheetTag("application.css") %>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
     <!-- Add RSS feed links -->
     <!-- @include('feed::links') -->
 
     <!-- Additional CSS -->
     <!-- yield css -->
-</head>
-<body>
+  </head>
+  <body>
     <!-- Header -->
     <!-- TODO: determine how to get authenticated user -->
     <!-- @if(Auth::user() && Auth::user()->is_admin) -->
@@ -41,22 +73,32 @@
     </div> -->
     <!-- @endif -->
     <div class="flex mt-3 mb-3 mr-5 ml-5 items-center">
-        <div class="flex w-5/6">
-            <div class="mt-1 mr-2">
-                <picture>
-                    <source srcset="<%= rootPath() %>assets/images/black-white-profile.webp" type="image/webp">
-                    <img src="<%= rootPath() %>assets/images/black-white-profile.png" type="image/png" alt="Grayscale profile picture" class="rounded-full w-12 m-auto mb-3" />
-                </picture>
-            </div>
-            <div>
-                <p class="block text-2xl">Patrique Ouimet</p>
-                <p class="block text-xs italic">Developer</p>
-            </div>
+      <div class="flex w-5/6">
+        <div class="mt-1 mr-2">
+          <picture>
+            <source
+              srcset="<%= rootPath() %>assets/images/black-white-profile.webp"
+              type="image/webp"
+            />
+            <img
+              src="<%= rootPath() %>assets/images/black-white-profile.png"
+              type="image/png"
+              alt="Grayscale profile picture"
+              class="rounded-full w-12 m-auto mb-3"
+            />
+          </picture>
         </div>
-        <div class="w-1/6 text-right">
-            <!-- TODO: determine how to fetch authenticated user -->
-            <a href="/login" class="mt-2 mr-2" title="Login"><i class="fas fa-sign-in-alt"></i></a>
+        <div>
+          <p class="block text-2xl">Patrique Ouimet</p>
+          <p class="block text-xs italic">Developer</p>
         </div>
+      </div>
+      <div class="w-1/6 text-right">
+        <!-- TODO: determine how to fetch authenticated user -->
+        <a href="/login" class="mt-2 mr-2" title="Login"
+          ><i class="fas fa-sign-in-alt"></i
+        ></a>
+      </div>
     </div>
 
     <!-- Navigation -->
@@ -68,7 +110,7 @@
                 </li>
                 <li class="w-1/4 text-center">
                     <!-- Update with helper route path -->
-                    <a class="text-black font-semibold no-underline hover:text-black" href="/blog">Blog</a>
+                    <a class="text-black font-semibold no-underline hover:text-black" href="<%= blogPath() %>">Blog</a>
                 </li>
                 <li class="w-1/4 text-center">
                     <a class="text-black font-semibold no-underline hover:text-black" href="/tip">Tips</a>
@@ -94,5 +136,5 @@
 
     <!-- Additional JS -->
     <!-- yield javascript -->
-</body>
+  </body>
 </html>

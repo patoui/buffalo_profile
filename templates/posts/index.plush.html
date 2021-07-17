@@ -13,7 +13,7 @@
 <h1 class="text-4xl mb-4">Articles</h1>
 <%= for (post) in posts { %>
 <div class="mb-6 w-full">
-    <a href="<%= postPath({ post_id: post.ID }) %>" class="no-underline font-semibold text-black text-xl hover:underline block"><%= post.Title %></a>
+    <a href="<%= postPath({ post_slug: post.Slug }) %>" class="no-underline font-semibold text-black text-xl hover:underline block"><%= post.Title %></a>
     <p class="mt-2 mb-2 text-sm text-gray-700"><%= post.ShortBody() %></p>
     <!-- TODO: determine how to get short published at 'short_published_at' -->
     <p class="text-sm text-gray-600">Published on <%= post.ShortPublishedAt() %></p>

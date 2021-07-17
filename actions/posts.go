@@ -3,6 +3,7 @@ package actions
 import (
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop/v5"
@@ -47,12 +48,15 @@ func PostShow(c buffalo.Context) error {
 	// Allocate an empty Post
 	post := &models.Post{}
 
-	// To find the Post the parameter post_id is used.
-	if err := tx.Find(post, c.Param("post_id")); err != nil {
+	// To find the Post the parameter post_slug is used.
+	if err := tx.Where("slug = ?", c.Param("post_slug")).First(post); err != nil {
 		return c.Error(http.StatusNotFound, err)
 	}
 
 	c.Set("post", post)
+	c.Set("pageTitle", post.Title)
+	c.Set("publishedAt", post.PublishedAt.Time.Format(time.RFC3339))
+	c.Set("ogType", "article")
 
 	return c.Render(http.StatusOK, r.HTML("/posts/show.plush.html"))
 }
