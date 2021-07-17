@@ -10,8 +10,7 @@ WORKDIR /src/github.com/patoui/buffalo_profile
 
 # this will cache the npm install step, unless package.json changes
 ADD package.json .
-ADD yarn.lock .
-RUN yarn install --no-progress
+RUN npm install --no-progress
 # Copy the Go Modules manifests
 COPY go.mod go.mod
 COPY go.sum go.sum
@@ -19,7 +18,6 @@ COPY go.sum go.sum
 # and so that source changes don't invalidate our downloaded layer
 RUN go mod download
 
-ADD . .
 RUN buffalo build --static -o /bin/app
 
 FROM alpine
