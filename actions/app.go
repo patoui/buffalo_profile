@@ -56,12 +56,26 @@ func App() *buffalo.App {
 		app.Use(popmw.Transaction(models.DB))
 
 		// Setup and use translations:
-		app.Use(translations())
+		// app.Use(translations())
 
 		app.GET("/", HomeHandler)
 
 		app.GET("/blog", PostList)
 		app.GET("/posts/{post_slug}", PostShow)
+
+		//AuthMiddlewares
+		app.Use(SetCurrentUser)
+		// TODO: apply to admin routes + favourite/comment
+		// app.Use(Authorize)
+
+		//Routes for Auth
+		app.GET("/login", AuthShowLogin)
+		app.POST("/login", AuthDoLogin)
+		app.GET("/logout", AuthDoLogout)
+
+		//Routes for User registration
+		app.GET("/register", UsersNew)
+		app.POST("/register", UsersCreate)
 
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}

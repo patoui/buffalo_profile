@@ -8,6 +8,7 @@
     <meta property="og:description" content="<%= post.ShortBody() %>" />
     <meta property="og:image"       content="<%= rootPath() %>assets/images/black-white-profile.png" />
 <% } %>
+<% contentFor("css") {} %>
 
 <h1 class="w-full text-4xl text-center font-bold"><%= post.Title %></h1>
 <p class="w-full text-sm text-center text-gray-600"><%= post.ShortPublishedAt() %></p>
@@ -73,5 +74,3 @@
     </div>
 </div>
 @endif -->
-
-<% contentFor("css") {} %>

@@ -59,9 +59,9 @@
         </div>
       </div>
       <div class="w-1/6 text-right">
-        <!-- TODO: determine how to fetch authenticated user -->
-        <a href="/login" class="mt-2 mr-2" title="Login"
-          ><i class="fas fa-sign-in-alt"></i
+        <a href="<%= if(current_user) { %><%= logoutPath() %><% } else { %><%= loginPath() %><% } %>"class="mt-2 mr-2"
+          title="<%= if(current_user) { %>Logout<% } else { %>Login<% } %>"
+          ><i class="fas <%= if(current_user) { %>fa-sign-out-alt<% } else { %>fa-sign-in-alt<% } %>"></i
         ></a>
       </div>
     </div>
