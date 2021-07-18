@@ -8,36 +8,8 @@
     <meta name="csrf-param" content="authenticity_token" />
     <meta name="csrf-token" content="<%= authenticity_token %>" />
 
-    <%= if (pageDescription) { %>
-        <meta name="description" content="<%= pageDescription %>" />
-    <% } %>
-
-    <meta property="og:type" content="<%= if(ogType) { %><%= ogType %><% } else { %>website<% } %>" />
-    <meta property="og:title" content="<%= if(pageTitle) { %><%= pageTitle %><% } else { %>Patrique Ouimet<% } %>" />
-
-    <%= if (pageDescription) { %>
-        <meta property="og:description" content="<%= pageDescription %>" />
-    <% } %>
-
-    <meta property="og:image" content="<%= rootPath() %>assets/images/black-white-profile.png" />
-
-    <%= if (ogType == "article") { %>
-
-        <meta property="article:author" content="Patrique Ouimet" />
-
-        <%= if (publishedAt) { %>
-            <meta property="article:published_time" content="<%= publishedAt %>" />
-        <% } %>
-
-        <%= if(tags) { %>
-            <%= for (tag) in tags { %>
-            <meta property="article:tag" content="<%= tag.Name %>" />
-            <% } %>
-        <% } %>
-
-    <% } %>
-
-    <meta property="og:url" content="<%= if(currentUrl) { %><%= currentUrl %><% } else { %><%= rootPath() %><% } %>" />
+    <!-- Additional meta tags -->
+    <%= contentOf("meta") %>
 
     <link rel="shortcut icon" type="image/x-icon" href="<%= assetPath("images/favicon.ico") %>"/>
 
@@ -45,17 +17,10 @@
 
     <%= stylesheetTag("application.css") %>
 
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
-    />
     <!-- Add RSS feed links -->
-    <!-- @include('feed::links') -->
 
     <!-- Additional CSS -->
-    <!-- yield css -->
+    <%= contentOf("css") %>
   </head>
   <body>
     <!-- Header -->

@@ -2,6 +2,8 @@ package models
 
 import (
 	"encoding/json"
+	"regexp"
+	"strings"
 	"time"
 
 	"github.com/go-sql-driver/mysql"
@@ -32,16 +34,23 @@ type Posts []Post
 
 // Get a post short body (first 100 characters)
 func (p Post) ShortBody() string {
-	bl := len(p.Body) - 1
+	reg, _ := regexp.Compile("[^a-zA-Z0-9 ]+")
+	sb := strings.TrimSpace(reg.ReplaceAllString(p.Body, ""))
+	bl := len(sb) - 1
 	if bl > 99 {
 		bl = 99
 	}
-	return p.Body[0:bl]
+	return sb[0:bl]
 }
 
-// Get formatted date time to display to the user
+// Get pretty formatted date time
 func (p Post) ShortPublishedAt() string {
 	return p.PublishedAt.Time.Format("Mon, Jan _2, 2006 3:04 PM")
+}
+
+// Get iso8601 (RFC3339) date time
+func (p Post) IsoPublishedAt() string {
+	return p.PublishedAt.Time.Format(time.RFC3339)
 }
 
 // String is not required by pop and may be deleted

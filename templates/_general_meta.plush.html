@@ -1,0 +1,8 @@
+<meta property="article:author" content="Patrique Ouimet" />
+
+<%= if (item.PublishedAt) { %>
+    <meta property="article:published_time" content="<%= item.IsoPublishedAt() %>" />
+<% } %>
+
+<!-- TODO: implement tags -->
+<!-- <meta property="article:tag" content="tag_name_here" /> -->
