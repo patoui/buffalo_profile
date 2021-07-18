@@ -19,9 +19,9 @@ test:
   #
   database: "buffalo_profile_test"
   host: "localhost"
-  port: "3306"
+  port: "3333"
   user: "root"
-  password: "root"
+  password: "test123"
 
 production:
   #

@@ -1,0 +1,20 @@
+[[scenario]]
+name = "one published post, one not published post"
+
+  [[scenario.table]]
+    name = "posts"
+
+    [[scenario.table.row]]
+      title = "This is published post title #1"
+      slug = "this-is-published-post-title-1"
+      body = "Published post body"
+      published_at = "<%= now() %>"
+      created_at = "<%= now() %>"
+      updated_at = "<%= now() %>"
+
+    [[scenario.table.row]]
+      title = "This is not published post title #1"
+      slug = "this-is-not-published-post-title-1"
+      body = "Not published post body"
+      created_at = "<%= now() %>"
+      updated_at = "<%= now() %>"

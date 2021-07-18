@@ -31,6 +31,7 @@ func PostList(c buffalo.Context) error {
 
 	c.Set("pagination", q.Paginator)
 	c.Set("posts", posts)
+	c.Set("pageTitle", "Articles")
 
 	return c.Render(http.StatusOK, r.HTML("/posts/index.plush.html"))
 }
