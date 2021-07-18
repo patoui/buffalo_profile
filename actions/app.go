@@ -77,6 +77,10 @@ func App() *buffalo.App {
 		app.GET("/register", UsersNew)
 		app.POST("/register", UsersCreate)
 
+		ag := app.Group("/admin")
+		ag.Use(Authorize, AdminOnly)
+		ag.GET("/dashboard", AdminDashboard)
+
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
 

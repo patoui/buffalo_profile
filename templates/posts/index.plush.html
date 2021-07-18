@@ -6,6 +6,7 @@
     <meta property="og:description" content="A small blog by humble developer Patrique Ouimet primarily working with PHP and JavaScript" />
     <meta property="og:image"       content="<%= rootPath() %>assets/images/black-white-profile.png" />
 <% } %>
+<% contentFor("css") {} %>
 
 <h1 class="text-4xl mb-4">Articles</h1>
 <%= for (post) in posts { %>
@@ -15,5 +16,3 @@
     <p class="text-sm text-gray-600">Published on <%= post.ShortPublishedAt() %></p>
 </div>
 <% } %>
-
-<% contentFor("css") {} %>

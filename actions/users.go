@@ -1,6 +1,8 @@
 package actions
 
 import (
+	"fmt"
+
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop/v5"
 	"github.com/patoui/buffalo_profile/models"
@@ -70,6 +72,30 @@ func Authorize(next buffalo.Handler) buffalo.Handler {
 			c.Flash().Add("danger", "You must be authorized to see that page")
 			return c.Redirect(302, "/auth/new")
 		}
+		return next(c)
+	}
+}
+
+// Only admins can access these routes
+func AdminOnly(next buffalo.Handler) buffalo.Handler {
+	return func(c buffalo.Context) error {
+		cu := c.Value("current_user")
+		if cu == nil {
+			return c.Redirect(302, "/")
+		}
+
+		fmt.Println("MADE IT HERE")
+
+		user := cu.(*models.User)
+
+		fmt.Println("MADE IT PASSED")
+
+		if user.Email != "patrique.ouimet@gmail.com" {
+			return c.Redirect(302, "/")
+		}
+
+		fmt.Println("AFTER CHECK")
+
 		return next(c)
 	}
 }

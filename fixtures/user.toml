@@ -1,0 +1,13 @@
+[[scenario]]
+name = "admin user"
+
+  [[scenario.table]]
+    name = "users"
+
+    [[scenario.table.row]]
+      name = "Patrique Ouimet"
+      email = "patrique.ouimet@gmail.com"
+      # password has generated from "test"
+      password_hash = "$2a$10$UU8nhyWOxWCeyDJUHF8NNOHGZRiaTo7hdOmPKVucFtZBwsjSqH4W2"
+      created_at = "<%= now() %>"
+      updated_at = "<%= now() %>"

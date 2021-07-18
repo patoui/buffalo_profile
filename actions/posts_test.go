@@ -5,5 +5,8 @@ func (as *ActionSuite) Test_Posts_List() {
 	res := as.HTML("/blog").Get()
 
 	as.Equal(200, res.Code)
-	as.Contains(res.Body.String(), "This is published post title #1")
+
+	rb := res.Body.String()
+	as.Contains(rb, "This is published post title #1")
+	as.NotContains(rb, "This is published post title #2")
 }
