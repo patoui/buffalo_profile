@@ -1,8 +1,6 @@
 package actions
 
 import (
-	"fmt"
-
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop/v5"
 	"github.com/patoui/buffalo_profile/models"
@@ -84,17 +82,11 @@ func AdminOnly(next buffalo.Handler) buffalo.Handler {
 			return c.Redirect(302, "/")
 		}
 
-		fmt.Println("MADE IT HERE")
+		u := cu.(*models.User)
 
-		user := cu.(*models.User)
-
-		fmt.Println("MADE IT PASSED")
-
-		if user.Email != "patrique.ouimet@gmail.com" {
+		if u.IsAdmin() {
 			return c.Redirect(302, "/")
 		}
-
-		fmt.Println("AFTER CHECK")
 
 		return next(c)
 	}

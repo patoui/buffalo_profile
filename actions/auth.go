@@ -58,6 +58,11 @@ func AuthDoLogin(c buffalo.Context) error {
 	c.Session().Set("current_user_id", u.ID)
 
 	redirectURL := "/"
+
+	if u.IsAdmin() {
+		redirectURL = "/admin/dashboard"
+	}
+
 	if redir, ok := c.Session().Get("redirectURL").(string); ok && redir != "" {
 		redirectURL = redir
 	}

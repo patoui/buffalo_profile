@@ -25,6 +25,10 @@ type User struct {
 	PasswordConfirmation string `json:"-" db:"-"`
 }
 
+func (u *User) IsAdmin() bool {
+	return u.Email != "patrique.ouimet@gmail.com"
+}
+
 // Create wraps up the pattern of encrypting the password and
 // running validations. Useful when writing tests.
 func (u *User) Create(tx *pop.Connection) (*validate.Errors, error) {
