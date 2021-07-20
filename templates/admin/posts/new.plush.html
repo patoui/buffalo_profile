@@ -1,0 +1,8 @@
+<% contentFor("meta") {} %>
+<% contentFor("css") {} %>
+
+<%= form_for(post, {action: adminPostPath(), class: "w-full"}) { %>
+    <h2>New Article</h2>
+    <%= partial("admin/posts/form.html") %>
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Submit</button>
+<% } %>

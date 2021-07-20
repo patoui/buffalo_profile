@@ -7,26 +7,38 @@
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2 {{ $errors->has('name') ? 'border-red-500' : '' }}" for="name"></label>
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" name="Name" type="text" placeholder="Name">
-            <!-- Conditionally show when errors occur -->
-            <!-- <p class="text-red-500 text-xs italic">{{ $errors->first('name') }}</p> -->
+            <%= if (errors) { %>
+                <%= for (error) in errors.Get("name") { %>
+                <p class="text-red-500 text-xs italic"><%= error %></p>
+                <% } %>
+            <% } %>
         </div>
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2 {{ $errors->has('email') ? 'border-red-500' : '' }}" for="email"></label>
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" name="Email" type="email" placeholder="Email">
-            <!-- Conditionally show when errors occur -->
-            <!-- <p class="text-red-500 text-xs italic">{{ $errors->first('email') }}</p> -->
+            <%= if (errors) { %>
+                <%= for (error) in errors.Get("email") { %>
+                <p class="text-red-500 text-xs italic"><%= error %></p>
+                <% } %>
+            <% } %>
         </div>
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2 {{ $errors->has('password') ? 'border-red-500' : '' }}" for="name"></label>
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" name="Password" type="password" placeholder="Password">
-            <!-- Conditionally show when errors occur -->
-            <!-- <p class="text-red-500 text-xs italic">{{ $errors->first('password') }}</p> -->
+            <%= if (errors) { %>
+                <%= for (error) in errors.Get("password") { %>
+                <p class="text-red-500 text-xs italic"><%= error %></p>
+                <% } %>
+            <% } %>
         </div>
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2 {{ $errors->has('password_confirmation') ? 'border-red-500' : '' }}" for="name"></label>
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" name="PasswordConfirmation" type="password" placeholder="Confirm Password">
-            <!-- Conditionally show when errors occur -->
-            <!-- <p class="text-red-500 text-xs italic">{{ $errors->first('password_confirmation') }}</p> -->
+            <%= if (errors) { %>
+                <%= for (error) in errors.Get("PasswordConfirmation") { %>
+                <p class="text-red-500 text-xs italic"><%= error %></p>
+                <% } %>
+            <% } %>
         </div>
         <div class="flex items-center justify-center mb-4">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Register</button>
@@ -35,7 +47,7 @@
              <!-- TODO: implement auth via github -->
             <a class="text-dark py-2 px-4 focus:outline-none" href="/auth/github"><i class="fab fa-github mr-2"></i>Github</a>
         </div>
-    </form>
+    <% } %>
 </div>
 
 
