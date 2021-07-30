@@ -1,6 +1,7 @@
 package actions
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gobuffalo/buffalo"
@@ -17,7 +18,7 @@ func AdminPostsNew(c buffalo.Context) error {
 	return c.Render(http.StatusOK, r.HTML("admin/posts/new.plush.html"))
 }
 
-// AdminPostsCreate registers a new user with the application.
+// AdminPostsCreate creates a new post
 func AdminPostsCreate(c buffalo.Context) error {
 	p := &models.Post{}
 	if err := c.Bind(p); err != nil {
@@ -35,6 +36,8 @@ func AdminPostsCreate(c buffalo.Context) error {
 		c.Set("errors", verrs)
 		return c.Render(200, r.HTML("admin/posts/new.plush.html"))
 	}
+
+	fmt.Println(c.Param("tags"))
 
 	return c.Redirect(302, "/admin/dashboard")
 }

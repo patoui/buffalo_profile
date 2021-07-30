@@ -6,6 +6,7 @@ const ManifestPlugin = require("webpack-manifest-plugin");
 const CleanObsoleteChunks = require("webpack-clean-obsolete-chunks");
 const TerserPlugin = require("terser-webpack-plugin");
 const LiveReloadPlugin = require("webpack-livereload-plugin");
+const { VueLoaderPlugin } = require('vue-loader');
 
 const configurator = {
   entries: function(){
@@ -38,6 +39,7 @@ const configurator = {
 
   plugins() {
     var plugins = [
+      new VueLoaderPlugin(),
       new Webpack.ProvidePlugin({$: "jquery",jQuery: "jquery"}),
       new MiniCssExtractPlugin({filename: "[name].[contenthash].css"}),
       new CopyWebpackPlugin([{from: "./assets",to: ""}], {copyUnmodified: true,ignore: ["css/**", "js/**", "src/**"] }),
@@ -52,6 +54,21 @@ const configurator = {
   moduleOptions: function() {
     return {
       rules: [
+        {
+          test: /\.vue$/,
+          loader: 'vue-loader'
+        },
+        {
+          test: /\.js$/,
+          loader: 'babel-loader'
+        },
+        {
+          test: /\.css$/,
+          use: [
+            'vue-style-loader',
+            'css-loader'
+          ]
+        },
         {
           test: /\.s[ac]ss$/,
           use: [

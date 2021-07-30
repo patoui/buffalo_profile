@@ -1,0 +1,8 @@
+create_table("tags") {
+	t.Column("id", "integer", {primary: true})
+	t.Column("name", "json", {})
+	t.Column("slug", "json", {})
+	t.Column("type", "string", {"null": true})
+	t.Column("order_column", "integer", {"null": true})
+	t.Timestamps()
+}

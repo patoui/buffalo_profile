@@ -1,5 +1,5 @@
 <div class="mb-4">
-    <label class="block text-gray-700 text-sm font-bold mb-2 {{ $errors->has('title') ? 'border-red-500' : '' }}" for="title"></label>
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="title"></label>
     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="title" name="Title" type="text" placeholder="Title" value="<%= post.Title %>">
     <%= if (errors) { %>
         <%= for (error) in errors.Get("title") { %>
@@ -8,7 +8,7 @@
     <% } %>
 </div>
 <div class="mb-4">
-    <label class="block text-gray-700 text-sm font-bold mb-2 {{ $errors->has('slug') ? 'border-red-500' : '' }}" for="slug"></label>
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="slug"></label>
     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="slug" name="Slug" type="text" placeholder="Slug" value="<%= post.Slug %>">
     <%= if (errors) { %>
         <%= for (error) in errors.Get("slug") { %>
@@ -17,7 +17,7 @@
     <% } %>
 </div>
 <div class="mb-4">
-    <label class="block text-gray-700 text-sm font-bold mb-2 {{ $errors->has('body') ? 'border-red-500' : '' }}" for="name"></label>
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="name"></label>
     <textarea name="Body" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="10" placeholder="Body"><%= post.Body %></textarea>
     <%= if (errors) { %>
         <%= for (error) in errors.Get("body") { %>
@@ -26,5 +26,5 @@
     <% } %>
 </div>
 
-<!-- <tags :initial-tags="{{ json_encode($tags) }}"
-      :initial-errors="{{ json_encode($errors) }}"></tags> -->
+<tags :initial-tags="[]"
+      :initial-errors="[]"></tags>

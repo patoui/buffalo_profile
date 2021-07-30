@@ -7,10 +7,10 @@
     </div>
 
     <div class="mt-4">
-        <span class="mr-2 bg-gray-100 rounded-full px-3 py-1 text-xs text-gray-600 mr-2 hover:text-black hover:underline" v-for="tag in tags">{{ '#' + tag }}</span>
+        <span class="mr-2 bg-gray-100 rounded-full px-3 py-1 text-xs text-gray-600 mr-2 hover:text-black hover:underline" v-for="tag in tags" v-bind:key="tag.id">{{ '#' + tag }}</span>
     </div>
 
-    <input type="hidden" name="tags[]" v-for="tag in tags" v-bind:value="tag">
+    <input type="hidden" name="tags[]" v-for="tag in tags" v-bind:key="tag.id" v-bind:value="tag">
 
     <p v-if="errors.has('tags')" class="text-red-500 text-xs italic">{{ errors.first('tags') }}</p>
 </div>
